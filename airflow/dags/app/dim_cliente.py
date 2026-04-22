@@ -1,8 +1,7 @@
 import os
 import pandas as pd
-import psycopg2 as pg
-os.path.join(os.path.dirname(__file__), '..', 'modules.py')
-import modules
+# os.path.join(os.path.dirname(__file__), '..', 'modules.py')
+import app.utils.modules as modules
 
 
 def dim_cliente():
