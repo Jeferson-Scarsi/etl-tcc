@@ -1,11 +1,11 @@
 <transformation>
   <info>
-    <name>dim_produto</name>
+    <name>\pdi\dimensao\dim_produto</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <directory>/dimensao</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -428,8 +428,8 @@
     <created_user>-</created_user>
     <created_date>2026/04/01 19:04:24.890</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2026/04/01 19:13:50.316</modified_date>
-    <key_for_session_key/>
+    <modified_date>2026/05/01 00:04:51.553</modified_date>
+    <key_for_session_key>H4sIAAAAAAAA/wMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -549,12 +549,17 @@
     </hop>
     <hop>
       <from>Table input</from>
+      <to>Add constants</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Add constants</from>
       <to>Select values</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Unique rows</from>
-      <to>Insert / update</to>
+      <to>Table output</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -592,6 +597,10 @@
       </field>
       <field>
         <name>cumprimento_cm</name>
+        <rename/>
+      </field>
+      <field>
+        <name>cd_origem_sistema</name>
         <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
@@ -697,6 +706,23 @@
         <currency_symbol/>
         <storage_type/>
       </meta>
+      <meta>
+        <name>cd_origem_sistema</name>
+        <rename>cd_origem_sistema</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -707,8 +733,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>208</xloc>
-      <yloc>64</yloc>
+      <xloc>352</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -779,6 +805,14 @@
         <collator_strength>0</collator_strength>
         <presorted>N</presorted>
       </field>
+      <field>
+        <name>cd_origem_sistema</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -789,8 +823,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>64</yloc>
+      <xloc>464</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -969,7 +1003,7 @@ FROM producao.produto p</sql>
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>64</yloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1003,14 +1037,14 @@ FROM producao.produto p</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>432</xloc>
-      <yloc>64</yloc>
+      <xloc>576</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Insert / update</name>
-    <type>InsertUpdate</type>
+    <name>Add constants</name>
+    <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1019,49 +1053,20 @@ FROM producao.produto p</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>cnx_dw_olist</connection>
-    <commit>100</commit>
-    <update_bypassed>N</update_bypassed>
-    <lookup>
-      <schema>dw</schema>
-      <table>dim_produto</table>
-      <key>
-        <name>id_produto</name>
-        <field>product_id</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>product_id</name>
-        <rename>id_produto</rename>
-        <update>N</update>
-      </value>
-      <value>
-        <name>product_category_name</name>
-        <rename>categoria</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>product_weight_g</name>
-        <rename>peso_produto</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>product_length_cm</name>
-        <rename>largura_cm</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>product_height_cm</name>
-        <rename>altura_cm</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>product_width_cm</name>
-        <rename>cumprimento_cm</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
+    <fields>
+      <field>
+        <name>cd_origem_sistema</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1071,8 +1076,80 @@ FROM producao.produto p</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>576</xloc>
-      <yloc>64</yloc>
+      <xloc>224</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Table output</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>cnx_dw_olist</connection>
+    <schema>dw</schema>
+    <table>dim_produto</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>product_id</column_name>
+        <stream_name>id_produto</stream_name>
+      </field>
+      <field>
+        <column_name>product_category_name</column_name>
+        <stream_name>categoria</stream_name>
+      </field>
+      <field>
+        <column_name>product_weight_g</column_name>
+        <stream_name>peso_produto</stream_name>
+      </field>
+      <field>
+        <column_name>product_length_cm</column_name>
+        <stream_name>largura_cm</stream_name>
+      </field>
+      <field>
+        <column_name>product_height_cm</column_name>
+        <stream_name>altura_cm</stream_name>
+      </field>
+      <field>
+        <column_name>product_width_cm</column_name>
+        <stream_name>cumprimento_cm</stream_name>
+      </field>
+      <field>
+        <column_name>cd_origem_sistema</column_name>
+        <stream_name>cd_origem_sistema</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>704</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

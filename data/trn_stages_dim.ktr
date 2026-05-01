@@ -428,21 +428,21 @@
     <created_user>-</created_user>
     <created_date>2026/02/28 14:07:16.953</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2026/03/09 22:26:31.860</modified_date>
+    <modified_date>2026/04/23 22:23:14.276</modified_date>
     <key_for_session_key>H4sIAAAAAAAA/wMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <connection>
-    <name>cnx_tcc_prd</name>
-    <server>localhost</server>
+    <name>cnx_dw_olist</name>
+    <server>${OLIST_DW_HOST}</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>postgres</database>
-    <port>5432</port>
-    <username>postgres</username>
-    <password>Encrypted 2be98afc86aa7f2e4a40fab62d697aede</password>
+    <database>${OLIST_DW_DB}</database>
+    <port>${OLIST_DW_PORT}</port>
+    <username>${OLIST_DW_USER}</username>
+    <password>${OLIST_DW_PASSWORD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -461,7 +461,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>5432</attribute>
+        <attribute>${OLIST_DW_PORT}</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -487,14 +487,14 @@
   </connection>
   <order>
     <hop>
-      <from>tb_produto</from>
+      <from>CSV file input</from>
       <to>Table output</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>tb_produto</name>
-    <type>TableInput</type>
+    <name>CSV file input</name>
+    <type>CsvInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -503,136 +503,44 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>cnx_tcc_prd</connection>
-    <sql>SELECT p.id_produto     AS nk_produto,
-       p.categoria      AS ds_categoria,
-       CURRENT_DATE - 1 AS dt_fim_vigencia_old,
-       CURRENT_DATE     AS dt_inicio_vigencia_novo,
-       NOW()            AS dt_carga
-FROM producao.produto p;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta>
-      <value-meta>
+    <filename>C:\data-integration\sources\etl-tcc\data\olist\product_category_name_translation.csv</filename>
+    <filename_field/>
+    <rownum_field/>
+    <include_filename>N</include_filename>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <header>Y</header>
+    <buffer_size>50000</buffer_size>
+    <lazy_conversion>Y</lazy_conversion>
+    <add_filename_result>N</add_filename_result>
+    <parallel>N</parallel>
+    <newline_possible>N</newline_possible>
+    <format>mixed</format>
+    <encoding/>
+    <fields>
+      <field>
+        <name>﻿product_category_name</name>
         <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>nk_produto</name>
-        <length>32</length>
+        <format/>
+        <currency>BRL</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>46</length>
         <precision>-1</precision>
-        <origin>Table input</origin>
-        <comments>nk_produto</comments>
-        <conversion_Mask/>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
         <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
+      </field>
+      <field>
+        <name>product_category_name_english</name>
         <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>ds_categoria</name>
-        <length>50</length>
+        <format/>
+        <currency>BRL</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>39</length>
         <precision>-1</precision>
-        <origin>Table input</origin>
-        <comments>ds_categoria</comments>
-        <conversion_Mask/>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
         <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Date</type>
-        <storagetype>normal</storagetype>
-        <name>dt_fim_vigencia_old</name>
-        <length>-1</length>
-        <precision>-1</precision>
-        <origin>Table input</origin>
-        <comments>dt_fim_vigencia_old</comments>
-        <conversion_Mask/>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Date</type>
-        <storagetype>normal</storagetype>
-        <name>dt_inicio_vigencia_novo</name>
-        <length>-1</length>
-        <precision>-1</precision>
-        <origin>Table input</origin>
-        <comments>dt_inicio_vigencia_novo</comments>
-        <conversion_Mask/>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Timestamp</type>
-        <storagetype>normal</storagetype>
-        <name>dt_carga</name>
-        <length>6</length>
-        <precision>-1</precision>
-        <origin>Table input</origin>
-        <comments>dt_carga</comments>
-        <conversion_Mask/>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-    </row-meta>
+      </field>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -642,7 +550,7 @@ FROM producao.produto p;</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
+      <xloc>128</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
@@ -658,14 +566,14 @@ FROM producao.produto p;</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>cnx_tcc_prd</connection>
-    <schema>stage</schema>
-    <table>stg_dim_produto</table>
+    <connection>cnx_dw_olist</connection>
+    <schema>producao</schema>
+    <table>categoria_ingles</table>
     <commit>1000</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
+    <specify_fields>Y</specify_fields>
     <partitioning_enabled>N</partitioning_enabled>
     <partitioning_field/>
     <partitioning_daily>N</partitioning_daily>
@@ -676,6 +584,14 @@ FROM producao.produto p;</sql>
     <return_keys>N</return_keys>
     <return_field/>
     <fields>
+      <field>
+        <column_name>﻿product_category_name</column_name>
+        <stream_name>﻿product_category_name</stream_name>
+      </field>
+      <field>
+        <column_name>product_category_name_english</column_name>
+        <stream_name>product_category_name_english</stream_name>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -686,7 +602,7 @@ FROM producao.produto p;</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
+      <xloc>304</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
