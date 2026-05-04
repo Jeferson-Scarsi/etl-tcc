@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  pdi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PDI_URL: https://github.com/ambientelivre/legacy-pentaho-ce/releases/download/pdi-ce-9.3.0.0-428/pdi-ce-9.3.0.0-428.zip
+
+    container_name: pdi-93
+    restart: unless-stopped
+
+    mem_limit: 4g
+    cpus: 1.0
+
+    environment:
+      - JAVA_OPTS=-Xms512m -Xmx3g
+      - KETTLE_HOME=/workspace/config
+
+    volumes:
+      - ./workspace:/workspace
+      - ./logs:/logs
+      - ./data:/data
+
+    command: tail -f /dev/null
