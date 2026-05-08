@@ -16,7 +16,7 @@ services:
 
     environment:
       - JAVA_OPTS=-Xms512m -Xmx3g
-      - KETTLE_HOME=/opt/etl-tcc/config
+      - KETTLE_HOME=/opt/pdi/config
 
     volumes:
       - ./config:/config
