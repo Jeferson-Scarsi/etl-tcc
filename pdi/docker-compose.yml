@@ -24,4 +24,6 @@ services:
       - ./logs:/opt/pdi/logs
       - ./data:/opt/pdi/data
 
-    command: tail -f /dev/null
+    command: >
+    sh -c "touch /opt/pdi/config/.kettle/kettle.properties &&
+         tail -f /dev/null"
