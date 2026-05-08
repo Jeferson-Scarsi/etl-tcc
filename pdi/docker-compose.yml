@@ -16,10 +16,10 @@ services:
 
     environment:
       - JAVA_OPTS=-Xms512m -Xmx3g
-      - KETTLE_HOME=/workspace/config
+      - KETTLE_HOME=/opt/etl-tcc/config
 
     volumes:
-      - ./workspace:/workspace
+      - ./config:/config
       - ./logs:/logs
       - ./data:/data
 
