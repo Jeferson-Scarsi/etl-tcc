@@ -19,8 +19,8 @@ services:
       - KETTLE_HOME=/opt/pdi/config
 
     volumes:
-      - ./config:/config
-      - ./logs:/logs
-      - ./data:/data
+      - ./config:/opt/pdi/config
+      - ./logs:/opt/pdi/logs
+      - ./data:/opt/pdi/data
 
     command: tail -f /dev/null
