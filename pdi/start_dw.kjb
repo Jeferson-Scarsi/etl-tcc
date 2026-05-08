@@ -327,7 +327,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${PATH}/pdi/dimensao/processa_dimensoes.kjb</filename>
+      <filename>${PATH}/dimensao/processa_dimensoes.kjb</filename>
       <jobname/>
       <directory/>
       <arg_from_previous>N</arg_from_previous>
@@ -364,7 +364,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${PATH}/pdi/fato/processa_fatos.kjb</filename>
+      <filename>${PATH}/fato/processa_fatos.kjb</filename>
       <jobname/>
       <directory/>
       <arg_from_previous>N</arg_from_previous>

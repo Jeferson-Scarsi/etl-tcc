@@ -315,7 +315,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${PATH}/pdi/dimensao/dim_cliente.ktr</filename>
+      <filename>${PATH}/dimensao/dim_cliente.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -354,7 +354,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${PATH}/pdi/dimensao/dim_produto.ktr</filename>
+      <filename>${PATH}/dimensao/dim_produto.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -393,7 +393,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${PATH}/pdi/dimensao/dim_vendedor.ktr</filename>
+      <filename>${PATH}/dimensao/dim_vendedor.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -432,7 +432,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${PATH}/pdi/dimensao/dim_pagamento.ktr</filename>
+      <filename>${PATH}/dimensao/dim_pagamento.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -471,7 +471,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${PATH}/pdi/dimensao/dim_status_pedido.ktr</filename>
+      <filename>${PATH}/dimensao/dim_status_pedido.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
