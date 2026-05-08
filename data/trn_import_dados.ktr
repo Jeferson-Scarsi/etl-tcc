@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
     <name>trn_import_dados</name>
@@ -436,12 +437,12 @@
   </notepads>
   <connection>
     <name>prod-new</name>
-    <server>vps.scarsi.com.br</server>
+    <server>${OLIST_PRD_HOST}</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>tcc_scarsi</database>
-    <port>5439</port>
-    <username>jeferson_scarsi</username>
+    <database>${OLIST_PRD_DB}</database>
+    <port>${OLIST_PRD_PORT}</port>
+    <username>${OLIST_PRD_USER}</username>
     <password>Encrypted 2be98afc86aa7f2e4cb2dad7390c3fd89</password>
     <servername/>
     <data_tablespace/>
@@ -461,7 +462,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>5439</attribute>
+        <attribute>${OLIST_PRD_PORT}</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -584,58 +585,6 @@
     </hop>
   </order>
   <step>
-    <name>out categoria_ingles</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>prod-new</connection>
-    <schema>producao</schema>
-    <table>categoria_ingles</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>product_category_name</column_name>
-        <stream_name>﻿product_category_name</stream_name>
-      </field>
-      <field>
-        <column_name>product_category_name_english</column_name>
-        <stream_name>product_category_name_english</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>240</xloc>
-      <yloc>16</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>categoria_ingles</name>
     <type>TableInput</type>
     <description/>
@@ -714,70 +663,6 @@
     <GUI>
       <xloc>64</xloc>
       <yloc>16</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>out clientes</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>prod-new</connection>
-    <schema>producao</schema>
-    <table>clientes</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>id_cliente</column_name>
-        <stream_name>id_cliente</stream_name>
-      </field>
-      <field>
-        <column_name>cpf_cnpj</column_name>
-        <stream_name>cpf_cnpj</stream_name>
-      </field>
-      <field>
-        <column_name>prefixo_codigo_postal</column_name>
-        <stream_name>prefixo_codigo_postal</stream_name>
-      </field>
-      <field>
-        <column_name>cidade</column_name>
-        <stream_name>cidade</stream_name>
-      </field>
-      <field>
-        <column_name>estado</column_name>
-        <stream_name>estado</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>240</xloc>
-      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -933,50 +818,6 @@
     </GUI>
   </step>
   <step>
-    <name>out geolocalizacao</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>prod-new</connection>
-    <schema>producao</schema>
-    <table>geolocalizacao</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>240</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>geolocalizacao</name>
     <type>TableInput</type>
     <description/>
@@ -1128,6 +969,166 @@
     </GUI>
   </step>
   <step>
+    <name>out categoria_ingles</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>prod-new</connection>
+    <schema>producao</schema>
+    <table>categoria_ingles</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>product_category_name</column_name>
+        <stream_name>﻿product_category_name</stream_name>
+      </field>
+      <field>
+        <column_name>product_category_name_english</column_name>
+        <stream_name>product_category_name_english</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>240</xloc>
+      <yloc>16</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>out clientes</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>prod-new</connection>
+    <schema>producao</schema>
+    <table>clientes</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>id_cliente</column_name>
+        <stream_name>id_cliente</stream_name>
+      </field>
+      <field>
+        <column_name>cpf_cnpj</column_name>
+        <stream_name>cpf_cnpj</stream_name>
+      </field>
+      <field>
+        <column_name>prefixo_codigo_postal</column_name>
+        <stream_name>prefixo_codigo_postal</stream_name>
+      </field>
+      <field>
+        <column_name>cidade</column_name>
+        <stream_name>cidade</stream_name>
+      </field>
+      <field>
+        <column_name>estado</column_name>
+        <stream_name>estado</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>240</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>out geolocalizacao</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>prod-new</connection>
+    <schema>producao</schema>
+    <table>geolocalizacao</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>240</xloc>
+      <yloc>144</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>out pedido_avaliacao</name>
     <type>TableOutput</type>
     <description/>
@@ -1188,6 +1189,306 @@
     <GUI>
       <xloc>240</xloc>
       <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>out pedido_item</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>prod-new</connection>
+    <schema>producao</schema>
+    <table>pedido_item</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>id_cliente</column_name>
+        <stream_name>id_cliente</stream_name>
+      </field>
+      <field>
+        <column_name>cpf_cnpj</column_name>
+        <stream_name>cpf_cnpj</stream_name>
+      </field>
+      <field>
+        <column_name>prefixo_codigo_postal</column_name>
+        <stream_name>prefixo_codigo_postal</stream_name>
+      </field>
+      <field>
+        <column_name>cidade</column_name>
+        <stream_name>cidade</stream_name>
+      </field>
+      <field>
+        <column_name>estado</column_name>
+        <stream_name>estado</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>16</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>out pedido_pagamento</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>prod-new</connection>
+    <schema>producao</schema>
+    <table>pedido_pagamento</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>id_cliente</column_name>
+        <stream_name>id_cliente</stream_name>
+      </field>
+      <field>
+        <column_name>cpf_cnpj</column_name>
+        <stream_name>cpf_cnpj</stream_name>
+      </field>
+      <field>
+        <column_name>prefixo_codigo_postal</column_name>
+        <stream_name>prefixo_codigo_postal</stream_name>
+      </field>
+      <field>
+        <column_name>cidade</column_name>
+        <stream_name>cidade</stream_name>
+      </field>
+      <field>
+        <column_name>estado</column_name>
+        <stream_name>estado</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>out pedidos</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>prod-new</connection>
+    <schema>producao</schema>
+    <table>pedidos</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>144</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>out produto</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>prod-new</connection>
+    <schema>producao</schema>
+    <table>produto</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>id_cliente</column_name>
+        <stream_name>id_cliente</stream_name>
+      </field>
+      <field>
+        <column_name>cpf_cnpj</column_name>
+        <stream_name>cpf_cnpj</stream_name>
+      </field>
+      <field>
+        <column_name>prefixo_codigo_postal</column_name>
+        <stream_name>prefixo_codigo_postal</stream_name>
+      </field>
+      <field>
+        <column_name>cidade</column_name>
+        <stream_name>cidade</stream_name>
+      </field>
+      <field>
+        <column_name>estado</column_name>
+        <stream_name>estado</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>out vendedores</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>prod-new</connection>
+    <schema>producao</schema>
+    <table>vendedores</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>id_cliente</column_name>
+        <stream_name>id_cliente</stream_name>
+      </field>
+      <field>
+        <column_name>cpf_cnpj</column_name>
+        <stream_name>cpf_cnpj</stream_name>
+      </field>
+      <field>
+        <column_name>prefixo_codigo_postal</column_name>
+        <stream_name>prefixo_codigo_postal</stream_name>
+      </field>
+      <field>
+        <column_name>cidade</column_name>
+        <stream_name>cidade</stream_name>
+      </field>
+      <field>
+        <column_name>estado</column_name>
+        <stream_name>estado</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>416</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1389,70 +1690,6 @@
     </GUI>
   </step>
   <step>
-    <name>out pedido_item</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>prod-new</connection>
-    <schema>producao</schema>
-    <table>pedido_item</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>id_cliente</column_name>
-        <stream_name>id_cliente</stream_name>
-      </field>
-      <field>
-        <column_name>cpf_cnpj</column_name>
-        <stream_name>cpf_cnpj</stream_name>
-      </field>
-      <field>
-        <column_name>prefixo_codigo_postal</column_name>
-        <stream_name>prefixo_codigo_postal</stream_name>
-      </field>
-      <field>
-        <column_name>cidade</column_name>
-        <stream_name>cidade</stream_name>
-      </field>
-      <field>
-        <column_name>estado</column_name>
-        <stream_name>estado</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>592</xloc>
-      <yloc>16</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>pedido_item</name>
     <type>TableInput</type>
     <description/>
@@ -1650,70 +1887,6 @@
     </GUI>
   </step>
   <step>
-    <name>out pedido_pagamento</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>prod-new</connection>
-    <schema>producao</schema>
-    <table>pedido_pagamento</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>id_cliente</column_name>
-        <stream_name>id_cliente</stream_name>
-      </field>
-      <field>
-        <column_name>cpf_cnpj</column_name>
-        <stream_name>cpf_cnpj</stream_name>
-      </field>
-      <field>
-        <column_name>prefixo_codigo_postal</column_name>
-        <stream_name>prefixo_codigo_postal</stream_name>
-      </field>
-      <field>
-        <column_name>cidade</column_name>
-        <stream_name>cidade</stream_name>
-      </field>
-      <field>
-        <column_name>estado</column_name>
-        <stream_name>estado</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>592</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>pedido_pagamento</name>
     <type>TableInput</type>
     <description/>
@@ -1861,50 +2034,6 @@
     <GUI>
       <xloc>416</xloc>
       <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>out pedidos</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>prod-new</connection>
-    <schema>producao</schema>
-    <table>pedidos</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>592</xloc>
-      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2125,70 +2254,6 @@
     <GUI>
       <xloc>416</xloc>
       <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>out produto</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>prod-new</connection>
-    <schema>producao</schema>
-    <table>produto</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>id_cliente</column_name>
-        <stream_name>id_cliente</stream_name>
-      </field>
-      <field>
-        <column_name>cpf_cnpj</column_name>
-        <stream_name>cpf_cnpj</stream_name>
-      </field>
-      <field>
-        <column_name>prefixo_codigo_postal</column_name>
-        <stream_name>prefixo_codigo_postal</stream_name>
-      </field>
-      <field>
-        <column_name>cidade</column_name>
-        <stream_name>cidade</stream_name>
-      </field>
-      <field>
-        <column_name>estado</column_name>
-        <stream_name>estado</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>592</xloc>
-      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2432,70 +2497,6 @@
     <GUI>
       <xloc>416</xloc>
       <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>out vendedores</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>prod-new</connection>
-    <schema>producao</schema>
-    <table>vendedores</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>id_cliente</column_name>
-        <stream_name>id_cliente</stream_name>
-      </field>
-      <field>
-        <column_name>cpf_cnpj</column_name>
-        <stream_name>cpf_cnpj</stream_name>
-      </field>
-      <field>
-        <column_name>prefixo_codigo_postal</column_name>
-        <stream_name>prefixo_codigo_postal</stream_name>
-      </field>
-      <field>
-        <column_name>cidade</column_name>
-        <stream_name>cidade</stream_name>
-      </field>
-      <field>
-        <column_name>estado</column_name>
-        <stream_name>estado</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>416</xloc>
-      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
