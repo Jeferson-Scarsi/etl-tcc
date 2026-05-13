@@ -315,7 +315,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${PATH}/fato/fat_vendas.ktr</filename>
+      <filename>${PATH_REPOSITORY}/fato/fat_vendas.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -354,7 +354,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${PATH}/fato/fat_pagamentos.ktr</filename>
+      <filename>${PATH_REPOSITORY}/fato/fat_pagamentos.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
