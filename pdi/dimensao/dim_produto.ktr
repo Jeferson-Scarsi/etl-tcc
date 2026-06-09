@@ -539,28 +539,33 @@
   </connection>
   <order>
     <hop>
-      <from>Select values</from>
-      <to>Sort rows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Sort rows</from>
       <to>Unique rows</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Table input</from>
-      <to>Add constants</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Add constants</from>
-      <to>Select values</to>
+      <to>Sort rows</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Unique rows</from>
+      <to>Select values</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values</from>
       <to>Table output</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Table input</from>
+      <to>Get variables</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get variables</from>
+      <to>Add constants</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -598,6 +603,45 @@
       </output>
     </remotesteps>
     <GUI>
+      <xloc>352</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get variables</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>cd_execucao</name>
+        <variable>${v_cd_execucao}</variable>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
       <xloc>224</xloc>
       <yloc>80</yloc>
       <draw>Y</draw>
@@ -617,24 +661,35 @@
     <fields>
       <field>
         <name>id_produto</name>
+        <rename/>
       </field>
       <field>
         <name>categoria</name>
+        <rename/>
       </field>
       <field>
         <name>peso_produto</name>
+        <rename/>
       </field>
       <field>
         <name>largura_cm</name>
+        <rename/>
       </field>
       <field>
         <name>altura_cm</name>
+        <rename/>
       </field>
       <field>
-        <name>cumprimento_cm</name>
+        <name>comprimento_cm</name>
+        <rename/>
       </field>
       <field>
         <name>cd_origem_sistema</name>
+        <rename/>
+      </field>
+      <field>
+        <name>cd_execucao</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
@@ -723,8 +778,8 @@
         <storage_type/>
       </meta>
       <meta>
-        <name>cumprimento_cm</name>
-        <rename>cumprimento_cm</rename>
+        <name>comprimento_cm</name>
+        <rename>comprimento_cm</rename>
         <type>Integer</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -756,6 +811,23 @@
         <currency_symbol/>
         <storage_type/>
       </meta>
+      <meta>
+        <name>cd_execucao</name>
+        <rename>cd_execucao</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -766,7 +838,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
+      <xloc>704</xloc>
       <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
@@ -831,7 +903,7 @@
         <presorted>N</presorted>
       </field>
       <field>
-        <name>cumprimento_cm</name>
+        <name>comprimento_cm</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -840,6 +912,14 @@
       </field>
       <field>
         <name>cd_origem_sistema</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>cd_execucao</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -856,7 +936,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
+      <xloc>480</xloc>
       <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
@@ -878,7 +958,7 @@
        p.peso_produto,
        p.largura_cm,
        p.altura_cm,
-       p.cumprimento_cm
+       p.comprimento_cm
 FROM producao.produto p</sql>
     <limit>0</limit>
     <lookup/>
@@ -1005,11 +1085,11 @@ FROM producao.produto p</sql>
       <value-meta>
         <type>Integer</type>
         <storagetype>normal</storagetype>
-        <name>cumprimento_cm</name>
+        <name>comprimento_cm</name>
         <length>15</length>
         <precision>0</precision>
         <origin>Table input</origin>
-        <comments>cumprimento_cm</comments>
+        <comments>comprimento_cm</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol>,</grouping_symbol>
@@ -1070,32 +1150,36 @@ FROM producao.produto p</sql>
     <return_field/>
     <fields>
       <field>
-        <column_name>product_id</column_name>
+        <column_name>id_produto</column_name>
         <stream_name>id_produto</stream_name>
       </field>
       <field>
-        <column_name>product_category_name</column_name>
+        <column_name>categoria</column_name>
         <stream_name>categoria</stream_name>
       </field>
       <field>
-        <column_name>product_weight_g</column_name>
+        <column_name>peso_g</column_name>
         <stream_name>peso_produto</stream_name>
       </field>
       <field>
-        <column_name>product_length_cm</column_name>
+        <column_name>largura_cm</column_name>
         <stream_name>largura_cm</stream_name>
       </field>
       <field>
-        <column_name>product_height_cm</column_name>
+        <column_name>altura_cm</column_name>
         <stream_name>altura_cm</stream_name>
       </field>
       <field>
-        <column_name>product_width_cm</column_name>
-        <stream_name>cumprimento_cm</stream_name>
+        <column_name>comprimento_cm</column_name>
+        <stream_name>comprimento_cm</stream_name>
       </field>
       <field>
         <column_name>cd_origem_sistema</column_name>
         <stream_name>cd_origem_sistema</stream_name>
+      </field>
+      <field>
+        <column_name>cd_execucao</column_name>
+        <stream_name>cd_execucao</stream_name>
       </field>
     </fields>
     <attributes/>
@@ -1107,7 +1191,7 @@ FROM producao.produto p</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>704</xloc>
+      <xloc>816</xloc>
       <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1142,7 +1226,7 @@ FROM producao.produto p</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>576</xloc>
+      <xloc>592</xloc>
       <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
     <name>\pdi\fato\fat_vendas</name>
@@ -538,56 +539,114 @@
   </connection>
   <order>
     <hop>
-      <from>Select values</from>
-      <to>Sort rows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Sort rows</from>
       <to>Unique rows</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Unique rows</from>
-      <to>busca_sk_cliente</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>busca_sk_cliente</from>
-      <to>busca_sk_produto</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>busca_sk_produto</from>
-      <to>busca_sk_vendedor</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>busca_sk_vendedor</from>
-      <to>busca_sk_tempo</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>busca_sk_tempo</from>
-      <to>busca_sk_status</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Table input</from>
-      <to>Add constants</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Add constants</from>
+      <to>Sort rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values</from>
+      <to>Table output</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unique rows</from>
       <to>Select values</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>busca_sk_status</from>
-      <to>Table output</to>
+      <from>Table input</from>
+      <to>Get variables</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get variables</from>
+      <to>Add constants</to>
       <enabled>Y</enabled>
     </hop>
   </order>
+  <step>
+    <name>Add constants</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>cd_origem_sistema</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>320</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get variables</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>cd_execucao</name>
+        <variable>${v_cd_execucao}</variable>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>192</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step>
     <name>Select values</name>
     <type>SelectValues</type>
@@ -600,65 +659,13 @@
       <schema_name/>
     </partitioning>
     <fields>
-      <field>
-        <name>id_cliente</name>
-        <rename/>
-      </field>
-      <field>
-        <name>id_produto</name>
-        <rename/>
-      </field>
-      <field>
-        <name>id_vendedor</name>
-        <rename/>
-      </field>
-      <field>
-        <name>dt_movimento</name>
-        <rename/>
-      </field>
-      <field>
-        <name>status_pedido</name>
-        <rename/>
-      </field>
-      <field>
-        <name>id_pedido</name>
-        <rename/>
-      </field>
-      <field>
-        <name>id_item_pedido</name>
-        <rename/>
-      </field>
-      <field>
-        <name>vl_movimento</name>
-        <rename/>
-      </field>
-      <field>
-        <name>vl_movimento_frete</name>
-        <rename/>
-      </field>
-      <field>
-        <name>dt_movimento_1</name>
-        <rename/>
-      </field>
-      <field>
-        <name>dt_aprovacao</name>
-        <rename/>
-      </field>
-      <field>
-        <name>dt_entrega_cliente</name>
-        <rename/>
-      </field>
-      <field>
-        <name>cd_origem_sistema</name>
-        <rename/>
-      </field>
       <select_unspecified>N</select_unspecified>
       <meta>
         <name>id_cliente</name>
         <rename>id_cliente</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
+        <type>None</type>
+        <length>9</length>
+        <precision>0</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
@@ -673,9 +680,9 @@
       <meta>
         <name>id_produto</name>
         <rename>id_produto</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
+        <type>None</type>
+        <length>9</length>
+        <precision>0</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
@@ -690,26 +697,9 @@
       <meta>
         <name>id_vendedor</name>
         <rename>id_vendedor</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>dt_movimento</name>
-        <rename>dt_movimento</rename>
-        <type>Date</type>
-        <length>-2</length>
-        <precision>-2</precision>
+        <type>None</type>
+        <length>9</length>
+        <precision>0</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
@@ -724,9 +714,9 @@
       <meta>
         <name>status_pedido</name>
         <rename>status_pedido</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
+        <type>None</type>
+        <length>9</length>
+        <precision>0</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
@@ -741,8 +731,8 @@
       <meta>
         <name>id_pedido</name>
         <rename>id_pedido</rename>
-        <type>String</type>
-        <length>-2</length>
+        <type>None</type>
+        <length>32</length>
         <precision>-2</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
@@ -758,9 +748,9 @@
       <meta>
         <name>id_item_pedido</name>
         <rename>id_item_pedido</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
+        <type>None</type>
+        <length>15</length>
+        <precision>0</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
@@ -775,9 +765,9 @@
       <meta>
         <name>vl_movimento</name>
         <rename>vl_movimento</rename>
-        <type>Number</type>
-        <length>-2</length>
-        <precision>-2</precision>
+        <type>None</type>
+        <length>8</length>
+        <precision>2</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
@@ -792,7 +782,24 @@
       <meta>
         <name>vl_movimento_frete</name>
         <rename>vl_movimento_frete</rename>
-        <type>Number</type>
+        <type>None</type>
+        <length>7</length>
+        <precision>2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>dt_movimento</name>
+        <rename>dt_movimento</rename>
+        <type>None</type>
         <length>-2</length>
         <precision>-2</precision>
         <conversion_mask/>
@@ -809,8 +816,8 @@
       <meta>
         <name>dt_aprovacao</name>
         <rename>dt_aprovacao</rename>
-        <type>Date</type>
-        <length>-2</length>
+        <type>None</type>
+        <length>6</length>
         <precision>-2</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
@@ -826,8 +833,8 @@
       <meta>
         <name>dt_entrega_cliente</name>
         <rename>dt_entrega_cliente</rename>
-        <type>Date</type>
-        <length>-2</length>
+        <type>None</type>
+        <length>6</length>
         <precision>-2</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
@@ -843,9 +850,26 @@
       <meta>
         <name>cd_origem_sistema</name>
         <rename>cd_origem_sistema</rename>
-        <type>Integer</type>
+        <type>None</type>
         <length>-2</length>
         <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>cd_execucao</name>
+        <rename>cd_execucao</rename>
+        <type>None</type>
+        <length>-2</length>
+        <precision>-2</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
@@ -867,7 +891,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
+      <xloc>736</xloc>
       <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
@@ -941,7 +965,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>432</xloc>
+      <xloc>448</xloc>
       <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
@@ -963,7 +987,6 @@
     p.id_cliente,
     pi.id_produto,
     pi.id_vendedor,
-    p.dt_movimento::date as dt_movimento,
     p.status_pedido,
 
     -- rastreamento
@@ -975,7 +998,7 @@
     pi.vl_movimento_frete,
 
     -- datas
-    p.dt_movimento,
+    p.dt_movimento::date as dt_movimento,
     p.dt_aprovacao,
     p.dt_entrega_cliente
 FROM producao.pedidos p
@@ -1042,29 +1065,6 @@ ON p.id_pedido = pi.id_pedido;</sql>
         <precision>-1</precision>
         <origin>Table input</origin>
         <comments>id_vendedor</comments>
-        <conversion_Mask/>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Date</type>
-        <storagetype>normal</storagetype>
-        <name>dt_movimento</name>
-        <length>-1</length>
-        <precision>-1</precision>
-        <origin>Table input</origin>
-        <comments>dt_movimento</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol>,</grouping_symbol>
@@ -1196,10 +1196,10 @@ ON p.id_pedido = pi.id_pedido;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Timestamp</type>
+        <type>Date</type>
         <storagetype>normal</storagetype>
-        <name>dt_movimento_1</name>
-        <length>6</length>
+        <name>dt_movimento</name>
+        <length>-1</length>
         <precision>-1</precision>
         <origin>Table input</origin>
         <comments>dt_movimento</comments>
@@ -1280,6 +1280,102 @@ ON p.id_pedido = pi.id_pedido;</sql>
     </GUI>
   </step>
   <step>
+    <name>Table output</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>cnx_dw_olist</connection>
+    <schema>stage</schema>
+    <table>stg_venda</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>id_cliente</column_name>
+        <stream_name>id_cliente</stream_name>
+      </field>
+      <field>
+        <column_name>id_produto</column_name>
+        <stream_name>id_produto</stream_name>
+      </field>
+      <field>
+        <column_name>id_vendedor</column_name>
+        <stream_name>id_vendedor</stream_name>
+      </field>
+      <field>
+        <column_name>status_pedido</column_name>
+        <stream_name>status_pedido</stream_name>
+      </field>
+      <field>
+        <column_name>id_pedido</column_name>
+        <stream_name>id_pedido</stream_name>
+      </field>
+      <field>
+        <column_name>id_item_pedido</column_name>
+        <stream_name>id_item_pedido</stream_name>
+      </field>
+      <field>
+        <column_name>vl_movimento</column_name>
+        <stream_name>vl_movimento</stream_name>
+      </field>
+      <field>
+        <column_name>vl_movimento_frete</column_name>
+        <stream_name>vl_movimento_frete</stream_name>
+      </field>
+      <field>
+        <column_name>dt_movimento</column_name>
+        <stream_name>dt_movimento</stream_name>
+      </field>
+      <field>
+        <column_name>dt_aprovacao</column_name>
+        <stream_name>dt_aprovacao</stream_name>
+      </field>
+      <field>
+        <column_name>dt_entrega_cliente</column_name>
+        <stream_name>dt_entrega_cliente</stream_name>
+      </field>
+      <field>
+        <column_name>cd_execucao</column_name>
+        <stream_name>cd_execucao</stream_name>
+      </field>
+      <field>
+        <column_name>cd_origem_sistema</column_name>
+        <stream_name>cd_origem_sistema</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>896</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Unique rows</name>
     <type>Unique</type>
     <description/>
@@ -1325,382 +1421,7 @@ ON p.id_pedido = pi.id_pedido;</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>48</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>busca_sk_cliente</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>cnx_dw_olist</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema>dw</schema>
-      <table>dim_cliente</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>id_cliente</name>
-        <field>customer_id</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>sk_cliente</name>
-        <rename>sk_cliente</rename>
-        <default/>
-        <type>Integer</type>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>busca_sk_produto</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>cnx_dw_olist</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema>dw</schema>
-      <table>dim_produto</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>id_produto</name>
-        <field>product_id</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>sk_produto</name>
-        <rename>sk_produto</rename>
-        <default/>
-        <type>Integer</type>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>448</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>busca_sk_status</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>cnx_dw_olist</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema>dw</schema>
-      <table>dim_status_pedido</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>status_pedido</name>
-        <field>order_status</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>sk_status</name>
-        <rename>sk_status</rename>
-        <default/>
-        <type>Integer</type>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>752</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>busca_sk_tempo</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>cnx_dw_olist</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema>dw</schema>
-      <table>dim_tempo</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>dt_movimento</name>
-        <field>data</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>sk_tempo</name>
-        <rename>sk_tempo</rename>
-        <default/>
-        <type>Integer</type>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>656</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>busca_sk_vendedor</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>cnx_dw_olist</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema>dw</schema>
-      <table>dim_vendedor</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>id_vendedor</name>
-        <field>seller_id</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>sk_vendedor</name>
-        <rename>sk_vendedor</rename>
-        <default/>
-        <type>Integer</type>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>544</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Add constants</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>cd_origem_sistema</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>1</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>192</xloc>
-      <yloc>48</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Table output</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>cnx_dw_olist</connection>
-    <schema>dw</schema>
-    <table>fato_vendas</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>sk_cliente</column_name>
-        <stream_name>sk_cliente</stream_name>
-      </field>
-      <field>
-        <column_name>sk_produto</column_name>
-        <stream_name>sk_produto</stream_name>
-      </field>
-      <field>
-        <column_name>sk_vendedor</column_name>
-        <stream_name>sk_vendedor</stream_name>
-      </field>
-      <field>
-        <column_name>sk_tempo</column_name>
-        <stream_name>sk_tempo</stream_name>
-      </field>
-      <field>
-        <column_name>sk_status</column_name>
-        <stream_name>sk_status</stream_name>
-      </field>
-      <field>
-        <column_name>order_id</column_name>
-        <stream_name>id_pedido</stream_name>
-      </field>
-      <field>
-        <column_name>order_item_id</column_name>
-        <stream_name>id_item_pedido</stream_name>
-      </field>
-      <field>
-        <column_name>preco</column_name>
-        <stream_name>vl_movimento</stream_name>
-      </field>
-      <field>
-        <column_name>valor_frete</column_name>
-        <stream_name>vl_movimento_frete</stream_name>
-      </field>
-      <field>
-        <column_name>data_compra</column_name>
-        <stream_name>dt_movimento</stream_name>
-      </field>
-      <field>
-        <column_name>data_aprovacao</column_name>
-        <stream_name>dt_aprovacao</stream_name>
-      </field>
-      <field>
-        <column_name>data_entrega</column_name>
-        <stream_name>dt_entrega_cliente</stream_name>
-      </field>
-      <field>
-        <column_name>cd_origem_sistema</column_name>
-        <stream_name>cd_origem_sistema</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>752</xloc>
+      <xloc>576</xloc>
       <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>

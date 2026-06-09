@@ -11,6 +11,57 @@
   <modified_date>2026/04/01 20:45:48.150</modified_date>
   <parameters>
     </parameters>
+  <connection>
+    <name>cnx_dw_olist</name>
+    <server>${OLIST_DW_HOST}</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>${OLIST_DW_DB}</database>
+    <port>${OLIST_DW_PORT}</port>
+    <username>${OLIST_DW_USER}</username>
+    <password>${OLIST_DW_PASSWORD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${OLIST_DW_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
   <slaveservers>
     </slaveservers>
   <job-log-table>
@@ -316,7 +367,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>608</xloc>
+      <xloc>960</xloc>
       <yloc>80</yloc>
       <attributes_kjc/>
     </entry>
@@ -353,18 +404,18 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>336</xloc>
+      <xloc>496</xloc>
       <yloc>80</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>processa_fatos</name>
+      <name>processa_stages</name>
       <description/>
       <type>JOB</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${PATH_REPOSITORY}/fato/processa_fatos.kjb</filename>
+      <filename>${PATH_REPOSITORY}/fato/processa_stage.kjb</filename>
       <jobname/>
       <directory/>
       <arg_from_previous>N</arg_from_previous>
@@ -390,7 +441,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>464</xloc>
+      <xloc>640</xloc>
       <yloc>80</yloc>
       <attributes_kjc/>
     </entry>
@@ -402,10 +453,70 @@
       <logmessage>--===============--
 
 Diretório padrão: ${PATH_REPOSITORY}
+Num. Execução: ${v_cd_execucao}
 
 --===============--</logmessage>
-      <loglevel/>
+      <loglevel>Basic</loglevel>
       <logsubject/>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>352</xloc>
+      <yloc>80</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>processa_fatos</name>
+      <description/>
+      <type>SQL</type>
+      <attributes/>
+      <sql>SELECT dw.fun_carga_fato_vendas(1, ${v_cd_execucao});
+SELECT dw.fun_carga_fato_pagamentos(1, ${v_cd_execucao});
+UPDATE config.contador SET nr_contador = nr_contador + 1 WHERE desc_contador = 'contador_execucao';</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>cnx_dw_olist</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>784</xloc>
+      <yloc>80</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>set_variavel_exec</name>
+      <description/>
+      <type>TRANS</type>
+      <attributes/>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${PATH_REPOSITORY}/auxiliar/set_variavel_exec.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <suppress_result_data>N</suppress_result_data>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -416,6 +527,33 @@ Diretório padrão: ${PATH_REPOSITORY}
   </entries>
   <hops>
     <hop>
+      <from>processa_dimensoes</from>
+      <to>processa_stages</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Write to log</from>
+      <to>processa_dimensoes</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>processa_stages</from>
+      <to>processa_fatos</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
       <from>processa_fatos</from>
       <to>Success</to>
       <from_nr>0</from_nr>
@@ -425,17 +563,8 @@ Diretório padrão: ${PATH_REPOSITORY}
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>processa_dimensoes</from>
-      <to>processa_fatos</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Start</from>
-      <to>Write to log</to>
+      <to>set_variavel_exec</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -443,8 +572,8 @@ Diretório padrão: ${PATH_REPOSITORY}
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Write to log</from>
-      <to>processa_dimensoes</to>
+      <from>set_variavel_exec</from>
+      <to>Write to log</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
