@@ -309,7 +309,7 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>fat_vendas</name>
+      <name>stg_vendas</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
@@ -348,7 +348,7 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>fat_pagamentos</name>
+      <name>stg_pagamentos</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
@@ -402,7 +402,7 @@
   <hops>
     <hop>
       <from>Start</from>
-      <to>fat_vendas</to>
+      <to>stg_vendas</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -411,7 +411,7 @@
     </hop>
     <hop>
       <from>Start</from>
-      <to>fat_pagamentos</to>
+      <to>stg_pagamentos</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -419,7 +419,7 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>fat_vendas</from>
+      <from>stg_vendas</from>
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -428,7 +428,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>fat_pagamentos</from>
+      <from>stg_pagamentos</from>
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
