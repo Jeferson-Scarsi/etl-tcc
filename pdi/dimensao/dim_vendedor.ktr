@@ -544,11 +544,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Add constants</from>
-      <to>Sort rows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Unique rows</from>
       <to>Select values</to>
       <enabled>Y</enabled>
@@ -560,93 +555,10 @@
     </hop>
     <hop>
       <from>Table input</from>
-      <to>Get variables</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Get variables</from>
-      <to>Add constants</to>
+      <to>Sort rows</to>
       <enabled>Y</enabled>
     </hop>
   </order>
-  <step>
-    <name>Add constants</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>cd_origem_sistema</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>1</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>304</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Get variables</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>cd_execucao</name>
-        <variable>${v_cd_execucao}</variable>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>192</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step>
     <name>Select values</name>
     <type>SelectValues</type>
@@ -661,23 +573,20 @@
     <fields>
       <field>
         <name>seller_id</name>
+        <rename/>
       </field>
       <field>
         <name>seller_city</name>
+        <rename/>
       </field>
       <field>
         <name>seller_state</name>
-      </field>
-      <field>
-        <name>cd_origem_sistema</name>
-      </field>
-      <field>
-        <name>cd_execucao</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
         <name>seller_id</name>
-        <rename>seller_id</rename>
+        <rename>id_vendedor</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -694,7 +603,7 @@
       </meta>
       <meta>
         <name>seller_city</name>
-        <rename>seller_city</rename>
+        <rename>cidade</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -711,42 +620,8 @@
       </meta>
       <meta>
         <name>seller_state</name>
-        <rename>seller_state</rename>
+        <rename>estado</rename>
         <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>cd_origem_sistema</name>
-        <rename>cd_origem_sistema</rename>
-        <type>Integer</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>cd_execucao</name>
-        <rename>cd_execucao</rename>
-        <type>Integer</type>
         <length>-2</length>
         <precision>-2</precision>
         <conversion_mask/>
@@ -770,7 +645,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>656</xloc>
+      <xloc>464</xloc>
       <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
@@ -818,14 +693,6 @@
         <collator_strength>0</collator_strength>
         <presorted>N</presorted>
       </field>
-      <field>
-        <name>cd_origem_sistema</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -836,7 +703,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
+      <xloc>224</xloc>
       <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
@@ -966,7 +833,7 @@ FROM producao.vendedores v</sql>
     <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
+    <specify_fields>N</specify_fields>
     <partitioning_enabled>N</partitioning_enabled>
     <partitioning_field/>
     <partitioning_daily>N</partitioning_daily>
@@ -977,26 +844,6 @@ FROM producao.vendedores v</sql>
     <return_keys>N</return_keys>
     <return_field/>
     <fields>
-      <field>
-        <column_name>id_vendedor</column_name>
-        <stream_name>seller_id</stream_name>
-      </field>
-      <field>
-        <column_name>cidade</column_name>
-        <stream_name>seller_city</stream_name>
-      </field>
-      <field>
-        <column_name>estado</column_name>
-        <stream_name>seller_state</stream_name>
-      </field>
-      <field>
-        <column_name>cd_origem_sistema</column_name>
-        <stream_name>cd_origem_sistema</stream_name>
-      </field>
-      <field>
-        <column_name>cd_execucao</column_name>
-        <stream_name>cd_execucao</stream_name>
-      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1007,7 +854,7 @@ FROM producao.vendedores v</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
+      <xloc>576</xloc>
       <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1042,7 +889,7 @@ FROM producao.vendedores v</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>528</xloc>
+      <xloc>336</xloc>
       <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
