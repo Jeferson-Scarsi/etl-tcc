@@ -1,1 +1,23 @@
 repository.log
+*.log
+*/.env
+.env
+
+# Airflow
+airflow/.env
+airflow/logs/*
+airflow/dags/*/__pycache__/*
+
+# NiFi
+nifi/data/*
+nifi/logs/*
+nifi/conf/*
+!nifi/conf/flow.json.gz
+
+# PDI
+pdi/data/*
+pdi/logs/*
+
+# Monitoramento
+monitoramento/prometheus/data/*
+monitoramento/grafana/data/*
