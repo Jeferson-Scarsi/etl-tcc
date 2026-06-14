@@ -544,11 +544,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Add constants</from>
-      <to>Sort rows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Select values</from>
       <to>Table output</to>
       <enabled>Y</enabled>
@@ -560,93 +555,10 @@
     </hop>
     <hop>
       <from>Table input</from>
-      <to>Get variables</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Get variables</from>
-      <to>Add constants</to>
+      <to>Sort rows</to>
       <enabled>Y</enabled>
     </hop>
   </order>
-  <step>
-    <name>Add constants</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>cd_origem_sistema</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>1</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>320</xloc>
-      <yloc>48</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Get variables</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>cd_execucao</name>
-        <variable>${v_cd_execucao}</variable>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>192</xloc>
-      <yloc>48</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step>
     <name>Select values</name>
     <type>SelectValues</type>
@@ -847,40 +759,6 @@
         <currency_symbol/>
         <storage_type/>
       </meta>
-      <meta>
-        <name>cd_origem_sistema</name>
-        <rename>cd_origem_sistema</rename>
-        <type>None</type>
-        <length>-2</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>cd_execucao</name>
-        <rename>cd_execucao</rename>
-        <type>None</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -998,7 +876,7 @@
     pi.vl_movimento_frete,
 
     -- datas
-    p.dt_movimento::date as dt_movimento,
+    p.dt_movimento,
     p.dt_aprovacao,
     p.dt_entrega_cliente
 FROM producao.pedidos p
@@ -1196,10 +1074,10 @@ ON p.id_pedido = pi.id_pedido;</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>Timestamp</type>
         <storagetype>normal</storagetype>
         <name>dt_movimento</name>
-        <length>-1</length>
+        <length>6</length>
         <precision>-1</precision>
         <origin>Table input</origin>
         <comments>dt_movimento</comments>
@@ -1274,7 +1152,7 @@ ON p.id_pedido = pi.id_pedido;</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>64</xloc>
+      <xloc>304</xloc>
       <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1351,14 +1229,6 @@ ON p.id_pedido = pi.id_pedido;</sql>
       <field>
         <column_name>dt_entrega_cliente</column_name>
         <stream_name>dt_entrega_cliente</stream_name>
-      </field>
-      <field>
-        <column_name>cd_execucao</column_name>
-        <stream_name>cd_execucao</stream_name>
-      </field>
-      <field>
-        <column_name>cd_origem_sistema</column_name>
-        <stream_name>cd_origem_sistema</stream_name>
       </field>
     </fields>
     <attributes/>

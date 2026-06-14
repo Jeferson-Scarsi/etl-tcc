@@ -549,104 +549,16 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Add constants</from>
-      <to>Sort rows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Unique rows</from>
       <to>Select values</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Table input</from>
-      <to>Get variables</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Get variables</from>
-      <to>Add constants</to>
+      <to>Sort rows</to>
       <enabled>Y</enabled>
     </hop>
   </order>
-  <step>
-    <name>Add constants</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>cd_origem_sistema</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>1</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>304</xloc>
-      <yloc>48</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Get variables</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>cd_execucao</name>
-        <variable>${v_cd_execucao}</variable>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>192</xloc>
-      <yloc>48</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step>
     <name>Select values</name>
     <type>SelectValues</type>
@@ -680,12 +592,6 @@
       <field>
         <name>nr_parcelas_pagamento</name>
       </field>
-      <field>
-        <name>cd_origem_sistema</name>
-      </field>
-      <field>
-        <name>cd_execucao</name>
-      </field>
       <select_unspecified>N</select_unspecified>
     </fields>
     <attributes/>
@@ -697,7 +603,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>688</xloc>
+      <xloc>480</xloc>
       <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
@@ -755,7 +661,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
+      <xloc>208</xloc>
       <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1028,14 +934,6 @@ ON p.id_pedido = pp.id_pedido</sql>
         <column_name>nr_parcelas_pagamento</column_name>
         <stream_name>nr_parcelas_pagamento</stream_name>
       </field>
-      <field>
-        <column_name>cd_origem_sistema</column_name>
-        <stream_name>cd_origem_sistema</stream_name>
-      </field>
-      <field>
-        <column_name>cd_execucao</column_name>
-        <stream_name>cd_execucao</stream_name>
-      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1046,7 +944,7 @@ ON p.id_pedido = pp.id_pedido</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>832</xloc>
+      <xloc>624</xloc>
       <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1076,7 +974,23 @@ ON p.id_pedido = pp.id_pedido</sql>
         <case_insensitive>N</case_insensitive>
       </field>
       <field>
+        <name>tipo_pagamento</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
         <name>id_pedido</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>nr_item_pagamento</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>vl_transacao</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>nr_parcelas_pagamento</name>
         <case_insensitive>N</case_insensitive>
       </field>
     </fields>
@@ -1089,7 +1003,7 @@ ON p.id_pedido = pp.id_pedido</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
+      <xloc>336</xloc>
       <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
