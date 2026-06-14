@@ -5,7 +5,8 @@ repository.log
 
 # Airflow
 airflow/.env
-airflow/logs/*
+airflow/logs/
+airflow/dags/__pycache__/*
 airflow/dags/*/__pycache__/*
 
 # NiFi
