@@ -367,7 +367,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>656</xloc>
+      <xloc>848</xloc>
       <yloc>80</yloc>
       <attributes_kjc/>
     </entry>
@@ -404,7 +404,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>192</xloc>
+      <xloc>304</xloc>
       <yloc>80</yloc>
       <attributes_kjc/>
     </entry>
@@ -441,7 +441,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>336</xloc>
+      <xloc>448</xloc>
       <yloc>80</yloc>
       <attributes_kjc/>
     </entry>
@@ -460,7 +460,62 @@ SELECT dw.fun_carga_fato_pagamentos();</sql>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>480</xloc>
+      <xloc>592</xloc>
+      <yloc>80</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>gravaInicioExec</name>
+      <description/>
+      <type>SQL</type>
+      <attributes/>
+      <sql>INSERT INTO config.execucao_etl (ferramenta,
+                                 run_id,
+                                 inicio,
+                                 status)
+SELECT 'Pentaho Data Integration (PDI)' AS ferramenta,
+       (
+           SELECT COALESCE(MAX(run_id), 0) + 1
+           FROM config.execucao_etl
+           WHERE ferramenta = 'Pentaho Data Integration (PDI)'
+       )                                AS run_id,
+       NOW()                            AS inicio,
+       'INICIADO'                       AS status;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>cnx_dw_olist</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>176</xloc>
+      <yloc>80</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>terminatePipeline</name>
+      <description/>
+      <type>SQL</type>
+      <attributes/>
+      <sql>UPDATE config.execucao_etl
+SET fim              = NOW(),
+    duracao_segundos = EXTRACT(EPOCH FROM (NOW() - inicio)),
+    status           = 'FINALIZADO'
+WHERE id = (
+               SELECT MAX(id)
+               FROM config.execucao_etl
+               WHERE ferramenta = 'Pentaho Data Integration (PDI)'
+);</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>cnx_dw_olist</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>720</xloc>
       <yloc>80</yloc>
       <attributes_kjc/>
     </entry>
@@ -485,8 +540,26 @@ SELECT dw.fun_carga_fato_pagamentos();</sql>
       <unconditional>N</unconditional>
     </hop>
     <hop>
+      <from>Start</from>
+      <to>gravaInicioExec</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>gravaInicioExec</from>
+      <to>processa_dimensoes</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
       <from>processa_fatos</from>
-      <to>Success</to>
+      <to>terminatePipeline</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -494,13 +567,13 @@ SELECT dw.fun_carga_fato_pagamentos();</sql>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Start</from>
-      <to>processa_dimensoes</to>
+      <from>terminatePipeline</from>
+      <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
+      <unconditional>N</unconditional>
     </hop>
   </hops>
   <notepads>
