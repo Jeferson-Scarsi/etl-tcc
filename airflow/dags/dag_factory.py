@@ -20,6 +20,11 @@ with DAG(
 ) as dag:
 
     start = EmptyOperator(task_id="start")
+    task_inicio_pipeline = SQLExecuteQueryOperator(
+        task_id="inicio_pipeline",
+        conn_id="cnx_dw_ecommerce",
+        sql="sql/registra_inicio_execucao.sql",
+    )
     task_dim_cliente = PythonOperator(
         task_id="task_dim_cliente",
         python_callable=dim_cliente,
@@ -53,6 +58,11 @@ with DAG(
         conn_id="cnx_dw_ecommerce",
         sql="sql/fun_carga_fatos.sql",
     )
+    task_fim_pipeline = SQLExecuteQueryOperator(
+        task_id="fim_pipeline",
+        conn_id="cnx_dw_ecommerce",
+        sql="sql/registra_final_execucao.sql",
+    )
     end = EmptyOperator(task_id="end")
 
     tasks_dimensoes = [
@@ -68,9 +78,9 @@ with DAG(
         task_stg_pagamentos,
     ]
     
-    start >> tasks_dimensoes
+    start >> task_inicio_pipeline >> tasks_dimensoes
     
     for task_stage in tasks_stages:
         tasks_dimensoes >> task_stage
     
-    tasks_stages >> task_fun_carga_fatos >> end
+    tasks_stages >> task_fun_carga_fatos >> task_fim_pipeline >> end

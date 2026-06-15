@@ -23,8 +23,7 @@ RUN mkdir -p /opt/pdi/Sources && \
     cd / && \
     mv /opt/pdi/Sources/etl-tcc-main/pdi/* /opt/pdi/Sources/ && \
     rm -rf /opt/pdi/Sources/etl-tcc-main/ && \
-    rm /opt/pdi/Sources/repo-temp.zip /opt/pdi/Sources/docker-compose.pdi.yml /opt/pdi/Sources/Dockerfile
-	touch /opt/pdi/config/.kettle/kettle.properties
+    rm /opt/pdi/Sources/repo-temp.zip /opt/pdi/Sources/docker-compose.yml /opt/pdi/Sources/Dockerfile
 
 ENV PDI_HOME=/opt/pdi
 ENV PATH="${PDI_HOME}:${PATH}"
