@@ -18,25 +18,26 @@ def stg_pagamentos():
     # 1 - Busca o SQL do arquivo e faz a consulta no banco de dados
     sql = md.load_sql('stg_pagamentos.sql')
     with conn_prd.connect() as connection_prd:
-        for df in pd.read_sql_query(sql, connection_prd, chunksize=10000):
-            # 2 - Ordena os dados por todas as colunas para garantir a consistência na ordenação de forma ascendente
-            df = df.sort_values(by=['id_cliente', 'dt_movimento', 'id_pedido'], ascending=True)
+        df = pd.read_sql_query(sql, connection_prd)
+    
+    # 2 - Ordena os dados por todas as colunas para garantir a consistência na ordenação de forma ascendente
+    df = df.sort_values(by=['id_cliente', 'dt_movimento', 'id_pedido'], ascending=True)
 
-            # 3 - Remove as linhas duplicadas com base na coluna seller_id.
-            df = df.drop_duplicates(subset=['id_cliente', 'dt_movimento', 'tipo_pagamento', 'id_pedido', 'nr_item_pagamento', 'vl_transacao', 'nr_parcelas_pagamento'], keep='first')
+    # 3 - Remove as linhas duplicadas com base na coluna seller_id.
+    df = df.drop_duplicates(subset=['id_cliente', 'dt_movimento', 'tipo_pagamento', 'id_pedido', 'nr_item_pagamento', 'vl_transacao', 'nr_parcelas_pagamento'], keep='first')
 
-            # 4 - Seleciona apenas as colunas necessárias para a tabela fato_pagamentos.
-            df = df[['id_cliente', 'dt_movimento', 'tipo_pagamento', 'id_pedido', 'nr_item_pagamento', 
-                               'vl_transacao', 'nr_parcelas_pagamento']]
+    # 4 - Seleciona apenas as colunas necessárias para a tabela fato_pagamentos.
+    df = df[['id_cliente', 'dt_movimento', 'tipo_pagamento', 'id_pedido', 'nr_item_pagamento', 
+                'vl_transacao', 'nr_parcelas_pagamento']]
 
-            # 5 - Mapeia as colunas e insere os dados na tabela de stage de pagamentos no banco de dados
-            with conn_dw.connect() as connection_dw:
-                if total_processado == 0:
-                    print("Limpando tabela stage.stg_pagamentos...")
-                    connection_dw.execute(text("TRUNCATE TABLE stage.stg_pagamentos"))
-                    connection_dw.commit()
-                df.to_sql(schema='stage', name='stg_pagamentos', con=connection_dw, if_exists='append', chunksize=10000, index=False)
+    # 5 - Mapeia as colunas e insere os dados na tabela de stage de pagamentos no banco de dados
+    with conn_dw.connect() as connection_dw:
+        if total_processado == 0:
+            print("Limpando tabela stage.stg_pagamentos...")
+            connection_dw.execute(text("TRUNCATE TABLE stage.stg_pagamentos"))
+            connection_dw.commit()
+            df.to_sql(schema='stage', name='stg_pagamentos', con=connection_dw, if_exists='append', chunksize=1000, index=False)
 
-            total_processado += len(df)
+        total_processado += len(df)
 
-            print(f"Lote commitado. Total processado: {total_processado}")
+        print(f"Lote commitado. Total processado: {total_processado}")
