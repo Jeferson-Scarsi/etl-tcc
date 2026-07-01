@@ -632,7 +632,7 @@
       </meta>
       <meta>
         <name>peso_produto</name>
-        <rename>peso_produto</rename>
+        <rename>peso_g</rename>
         <type>Integer</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -1013,7 +1013,7 @@ FROM producao.produto p</sql>
       </field>
       <field>
         <column_name>peso_g</column_name>
-        <stream_name>peso_produto</stream_name>
+        <stream_name>peso_g</stream_name>
       </field>
       <field>
         <column_name>largura_cm</column_name>

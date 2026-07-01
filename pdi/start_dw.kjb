@@ -506,7 +506,8 @@ WHERE id = (
                SELECT MAX(id)
                FROM config.execucao_etl
                WHERE ferramenta = 'Pentaho Data Integration (PDI)'
-);</sql>
+)
+AND ferramenta = 'Pentaho Data Integration (PDI)';</sql>
       <useVariableSubstitution>T</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>

@@ -769,7 +769,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>736</xloc>
+      <xloc>528</xloc>
       <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
@@ -843,7 +843,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
+      <xloc>240</xloc>
       <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1152,7 +1152,7 @@ ON p.id_pedido = pi.id_pedido;</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>304</xloc>
+      <xloc>96</xloc>
       <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1240,7 +1240,7 @@ ON p.id_pedido = pi.id_pedido;</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>896</xloc>
+      <xloc>688</xloc>
       <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1262,11 +1262,11 @@ ON p.id_pedido = pi.id_pedido;</sql>
     <error_description/>
     <fields>
       <field>
-        <name>id_cliente</name>
+        <name>id_produto</name>
         <case_insensitive>Y</case_insensitive>
       </field>
       <field>
-        <name>id_produto</name>
+        <name>id_cliente</name>
         <case_insensitive>Y</case_insensitive>
       </field>
       <field>
@@ -1291,7 +1291,7 @@ ON p.id_pedido = pi.id_pedido;</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>576</xloc>
+      <xloc>368</xloc>
       <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>

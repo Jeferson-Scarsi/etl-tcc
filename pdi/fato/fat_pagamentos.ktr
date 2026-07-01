@@ -573,24 +573,31 @@
     <fields>
       <field>
         <name>id_cliente</name>
+        <rename/>
       </field>
       <field>
         <name>dt_movimento</name>
+        <rename/>
       </field>
       <field>
         <name>tipo_pagamento</name>
+        <rename/>
       </field>
       <field>
         <name>id_pedido</name>
+        <rename/>
       </field>
       <field>
         <name>nr_item_pagamento</name>
+        <rename/>
       </field>
       <field>
         <name>vl_transacao</name>
+        <rename/>
       </field>
       <field>
         <name>nr_parcelas_pagamento</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -967,31 +974,31 @@ ON p.id_pedido = pp.id_pedido</sql>
     <fields>
       <field>
         <name>id_cliente</name>
-        <case_insensitive>N</case_insensitive>
+        <case_insensitive>Y</case_insensitive>
       </field>
       <field>
         <name>dt_movimento</name>
-        <case_insensitive>N</case_insensitive>
+        <case_insensitive>Y</case_insensitive>
       </field>
       <field>
         <name>tipo_pagamento</name>
-        <case_insensitive>N</case_insensitive>
+        <case_insensitive>Y</case_insensitive>
       </field>
       <field>
         <name>id_pedido</name>
-        <case_insensitive>N</case_insensitive>
+        <case_insensitive>Y</case_insensitive>
       </field>
       <field>
         <name>nr_item_pagamento</name>
-        <case_insensitive>N</case_insensitive>
+        <case_insensitive>Y</case_insensitive>
       </field>
       <field>
         <name>vl_transacao</name>
-        <case_insensitive>N</case_insensitive>
+        <case_insensitive>Y</case_insensitive>
       </field>
       <field>
         <name>nr_parcelas_pagamento</name>
-        <case_insensitive>N</case_insensitive>
+        <case_insensitive>Y</case_insensitive>
       </field>
     </fields>
     <attributes/>

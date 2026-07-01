@@ -573,15 +573,12 @@
     <fields>
       <field>
         <name>seller_id</name>
-        <rename/>
       </field>
       <field>
         <name>seller_city</name>
-        <rename/>
       </field>
       <field>
         <name>seller_state</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
